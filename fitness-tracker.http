@@ -1,0 +1,218 @@
+### User Management
+@userId = 671182a1ee35d80a6c01b1e7
+@anotherUserId = 671184bd3691892dfc0910b2
+@anotherUserId2 = 6711883a5a67b58a219d14eb
+@workoutId = 67118305ee35d80a6c01b1ed
+@exerciseId = 6711836fee35d80a6c01b1f5
+@nutritionPlanId = 671183b0ee35d80a6c01b202
+@progressId = 671183dcee35d80a6c01b209
+
+# Register a new user
+POST http://localhost:3000/users/register
+Content-Type: application/json
+
+{
+  "username": "testuser3",
+  "email": "testuser3@example.com",
+  "password": "password123"
+}
+###
+
+# Login a user
+POST http://localhost:3000/users/login
+Content-Type: application/json
+
+{
+  "email": "testuser1@example.com",
+  "password": "password123"
+}
+###
+
+# Get a user by ID
+GET http://localhost:3000/users/{{userId}}
+###
+
+# Update a user by ID
+PUT http://localhost:3000/users/{{userId}}
+Content-Type: application/json
+
+{
+  "username": "updateduser"
+}
+###
+
+# Delete a user by ID
+DELETE http://localhost:3000/users/{{userId}}
+###
+
+### Workout Management
+
+# Create a new workout
+POST http://localhost:3000/workouts
+Content-Type: application/json
+
+{
+  "userId": "6711883a5a67b58a219d14eb",
+  "name": "Morning Workout",
+  "exercises": []
+}
+###
+
+# Get all workouts
+GET http://localhost:3000/workouts
+###
+
+# Get a workout by ID
+GET http://localhost:3000/workouts/{{workoutId}}
+###
+
+# Update a workout by ID
+PUT http://localhost:3000/workouts/{{workoutId}}
+Content-Type: application/json
+
+{
+  "name": "Updated Workout"
+}
+###
+
+# Delete a workout by ID
+DELETE http://localhost:3000/workouts/{{workoutId}}
+###
+
+### Exercise Management
+
+# Create a new exercise
+POST http://localhost:3000/exercises
+Content-Type: application/json
+
+{
+  "name": "Push-up",
+  "description": "A basic push-up exercise",
+  "duration": 10,
+  "caloriesBurned": 50
+}
+###
+
+# Get all exercises
+GET http://localhost:3000/exercises
+###
+
+# Get an exercise by ID
+GET http://localhost:3000/exercises/{{exerciseId}}
+###
+
+# Update an exercise by ID
+PUT http://localhost:3000/exercises/{{exerciseId}}
+Content-Type: application/json
+
+{
+  "name": "Updated Exercise"
+}
+###
+
+# Delete an exercise by ID
+DELETE http://localhost:3000/exercises/{{exerciseId}}
+###
+
+### Nutrition Plan Management
+
+# Create a new nutrition plan
+POST http://localhost:3000/nutrition-plans
+Content-Type: application/json
+
+{
+  "userId": "{{userId}}",
+  "name": "Keto Diet",
+  "meals": ["Breakfast", "Lunch", "Dinner"]
+}
+###
+
+# Get all nutrition plans
+GET http://localhost:3000/nutrition-plans
+###
+
+# Get a nutrition plan by ID
+GET http://localhost:3000/nutrition-plans/{{nutritionPlanId}}
+###
+
+# Update a nutrition plan by ID
+PUT http://localhost:3000/nutrition-plans/{{nutritionPlanId}}
+Content-Type: application/json
+
+{
+  "name": "Updated Nutrition Plan"
+}
+###
+
+# Delete a nutrition plan by ID
+DELETE http://localhost:3000/nutrition-plans/{{nutritionPlanId}}
+###
+
+### Progress Tracking
+
+# Create a new progress entry
+POST http://localhost:3000/progress
+Content-Type: application/json
+
+{
+  "userId": "{{userId}}",
+  "weight": 70,
+  "bodyFatPercentage": 15
+}
+###
+
+# Get all progress entries
+GET http://localhost:3000/progress
+###
+
+# Get a progress entry by ID
+GET http://localhost:3000/progress/{{progressId}}
+###
+
+# Update a progress entry by ID
+PUT http://localhost:3000/progress/{{progressId}}
+Content-Type: application/json
+
+{
+  "weight": 68
+}
+###
+
+# Delete a progress entry by ID
+DELETE http://localhost:3000/progress/{{progressId}}
+###
+
+### Social Features
+
+# Follow a user
+POST http://localhost:3000/social/follow
+Content-Type: application/json
+
+{
+  "followerId": "{{userId}}",
+  "followingId": "{{anotherUserId}}"
+}
+###
+# Follow another user
+
+POST http://localhost:3000/social/follow
+Content-Type: application/json
+
+{
+  "followerId": "{{userId}}",
+  "followingId": "{{anotherUserId2}}"
+}
+
+###
+
+# Get followers of a user
+GET http://localhost:3000/social/followers?userId={{userId}}
+###
+
+# Get following users
+GET http://localhost:3000/social/following?userId={{userId}}
+###
+
+# Get activity feed
+GET http://localhost:3000/social/activity-feed?userId={{userId}}
+###
